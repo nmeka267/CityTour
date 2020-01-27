@@ -2,13 +2,18 @@ import React, { Component } from "react";
 import Tour from "../Tour";
 import "./tourlist.scss";
 import { tourData } from "../../tourData";
+import { tsConstructorType } from "@babel/types";
 
 export default class TourList extends Component {
   state = {
     tours: tourData
   };
   removeTour = id => {
-    console.log(id);
+    const { tours } = this.state;
+    const sortedTours = tours.filter(tour => tour.id != id);
+    this.setState({
+      tours: sortedTours
+    });
   };
   render() {
     // console.log(this.state.tours);
